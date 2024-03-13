@@ -3,83 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brimarti <brimarti@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 13:42:34 by brimarti          #+#    #+#             */
-/*   Updated: 2024/02/28 12:50:00 by brimarti         ###   ########.fr       */
+/*   Created: 2019/11/12 20:02:31 by alromero          #+#    #+#             */
+/*   Updated: 2019/11/13 21:41:03 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-static int	ft_putnbr(long nb)
+int		digit_counter(int n)
 {
-	int	i;
+	int i;
+	int	copy;
 
 	i = 0;
-	if (nb < 0)
-		nb *= -1;
-	while (nb > 0)
+	if (n == 0)
+		return (1);
+	if (n == -2147483648)
+		return (11);
+	if (n < 0)
 	{
-		nb = nb / 10;
+		n = -n;
+		i++;
+	}
+	copy = n;
+	while (copy > 0)
+	{
+		copy = copy / 10;
 		i++;
 	}
 	return (i);
 }
 
-char	*real_itoa(char *num, int size, int size_r, int n)
+int		exp_counter(int n)
 {
-	if ((long)n < 0)
-	{
-		num = (char *)malloc(sizeof(char) * (size + 2));
-		num[0] = '-';
-		n *= (-1);
-	}
-	else
-		num = (char *)malloc(sizeof(char) * (size + 1));
-	if (!num)
-		return (NULL);
-	size_r = size;
-	while (size > 0)
-	{
-		if (n > 9)
-			num[size] = ((long)n) % 10 + '0';
-		else
-			num[size] = ((long)n) + '0';
-		n = n / 10;
-		size--;
-	}
-	num[size_r + 1] = '\0';
-	return (num);
+	int exp;
+	int	digits;
+
+	if (n == 0)
+		return (1);
+	if (n == -2147483648)
+		return (1000000000);
+	digits = digit_counter(n);
+	if (n < 0)
+		digits--;
+	exp = 1;
+	while (--digits)
+		exp = exp * 10;
+	return (exp);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*num;
-	int		size_r;
+	char		*str;
+	int			exp;
+	int			i;
+	long int	copy;
 
-	size_r = 0;
-	num = 0;
-	return (real_itoa(num, ft_putnbr((long)n), size_r, n));
-}
-
-/*
-#include <stdio.h>
-#include <stdlib.h>
-
-int main()
-{
-
-	char *new = ft_itoa(-929932);
-	int i = 0;
-	while (new[i] != '\0')
+	copy = (long int)n;
+	exp = exp_counter(n);
+	i = 0;
+	if (!(str = malloc(digit_counter(n) + 1)))
+		return (NULL);
+	if (n < 0)
 	{
-		printf("%c", new[i]);
-		i++;
+		str[i++] = '-';
+		copy = -copy;
 	}
-	printf("\n");
-	//char buffer [sizeof(int)*8+1];
-	//printf("%d\n", itoa(-929932, buffer, DECIMAL));
-    return 0;
+	while (exp > 0)
+	{
+		str[i++] = (copy / exp) + 48;
+		copy = copy % exp;
+		exp = exp / 10;
+	}
+	str[i] = '\0';
+	return (str);
 }
-*/
