@@ -6,7 +6,7 @@
 /*   By: brimarti <brimarti@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:46:43 by brimarti          #+#    #+#             */
-/*   Updated: 2024/03/13 16:40:45 by brimarti         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:07:09 by brimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 
 	srcsize = 0;
 	i = 0;
-	if (!src || !dest)
-		return ('\0');
 	srcsize = ft_strlen((char *)src);
 	if (size != 0)
 	{

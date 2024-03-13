@@ -6,7 +6,7 @@
 /*   By: brimarti <brimarti@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:45:40 by brimarti          #+#    #+#             */
-/*   Updated: 2024/03/02 14:36:10 by brimarti         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:00:22 by brimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,16 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
-	int flag;
+	char	ch;
 
-	i = 0;
-	flag = 0;
-	while (((char*)s)[i] != '\0' && flag == 0)
+	ch = c; 
+	while (*s != ch)
 	{
-		if (((char*)s)[i] ==  c)
-		{
-			return ((char *)&s[i]);
-			flag = 1;
-		}
-		i++;
+		if (*s == '\0')
+			return (0);
+		s++;
 	}
-	if (c == '\0')
-		return ((char*)&s[i]);
-	return (NULL);
+	return ((char *)s);
 }
 
 /*

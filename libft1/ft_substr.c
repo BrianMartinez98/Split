@@ -1,48 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brimarti <brimarti@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 13:57:00 by brimarti          #+#    #+#             */
-/*   Updated: 2024/03/13 18:55:01 by brimarti         ###   ########.fr       */
+/*   Created: 2024/02/10 13:56:08 by brimarti          #+#    #+#             */
+/*   Updated: 2024/03/13 20:09:03 by brimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	char	*sub;
 	int		i;
 
-	if (*s)
+	i = 0;
+	sub = NULL;
+	if (!s || (!(sub = (char *)malloc(len + 1))))
+		return (NULL);
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	while (len--)
 	{
-		i = 0;
-		while (s[i] != '\0')
-		{
-			f(i, &s[i]);
-			i++;
-		}
+		sub[i] = s[start];
+		i++;
+		start++;
 	}
+	sub[i] = '\0';
+	return (sub);
 }
 
 /*
 #include <stdio.h>
 #include <stdlib.h>
-#include "libft.h"
 
-void my_func(unsigned int i, char *str)
-{
- 	printf("My inner function: index = %d and the string is %s\n", i, str);
-}
-
-int main()
-{
-	char str[10] = "Hello.";
- 	printf("The result is %s\n", str);
- 	ft_striteri(str, my_func);
- 	printf("The result is %s\n", str);
- 	return 0;
+int main() {
+	char *s = "hello, world!";
+	int start = 3;
+	int len = 5;
+	printf("el substring es: %s \n", ft_substr(s, start, len));
+	return 0;
 }
 */

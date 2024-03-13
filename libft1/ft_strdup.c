@@ -3,29 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brimarti <brimarti@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: brimarti <brimarti@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 14:53:21 by brimarti          #+#    #+#             */
-/*   Updated: 2024/02/21 14:54:00 by brimarti         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:58:02 by brimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
 	int		i;
-	int		n;
 	char	*d;
+	char	*str;
 
-	d = (char *)malloc(sizeof(char));
+	str = (char *)s;
 	i = 0;
-	n = ft_strlen((char *)s);
-	while (i < n)
+	d = (char *)malloc(ft_strlen(str) + 1);
+	if (d == NULL)
+		return (NULL);
+	if (!d)
+		return (NULL);
+	while (str[i] != '\0')
 	{
-		d[i] = s[i];
+		d[i] = str[i];
 		i++;
 	}
+	d[i] = '\0';
 	return (d);
 }
 
@@ -33,7 +38,6 @@ char	*strdup(const char *s)
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 
 int main() {
     const char *original = "Hola, mundo";

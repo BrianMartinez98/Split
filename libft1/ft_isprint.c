@@ -6,7 +6,7 @@
 /*   By: brimarti <brimarti@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:41:27 by brimarti          #+#    #+#             */
-/*   Updated: 2024/02/21 17:53:03 by brimarti         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:05:54 by brimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 int	ft_isprint(int c)
 {
-	if (c < 32 && c >= 0)
-		return (0);
-	else if (c == 177 || c == 127)
-		return (0);
-	else
+	if (c > 31 && c < 127 )
 		return (1);
+	else
+		return (0);
 }
 
 /*

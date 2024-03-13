@@ -6,7 +6,7 @@
 /*   By: brimarti <brimarti@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 13:53:13 by brimarti          #+#    #+#             */
-/*   Updated: 2024/02/21 14:50:12 by brimarti         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:23:20 by brimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	if (!s)
 		return (NULL);
 	str = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
-	if (s == NULL)
+	if (str == NULL)
 		return (NULL);
 	while (s[i] != '\0')
 	{

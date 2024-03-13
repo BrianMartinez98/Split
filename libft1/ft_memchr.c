@@ -6,7 +6,7 @@
 /*   By: brimarti <brimarti@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 14:42:02 by brimarti          #+#    #+#             */
-/*   Updated: 2024/03/06 17:13:43 by brimarti         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:21:25 by brimarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 void	*ft_memchr(const void *s, int c, size_t num)
 {
-	unsigned int	i;
-	char			*ptr;
+	size_t	i;
+	unsigned char	*ptr;
+	unsigned char	ch;
 
+	ptr = (unsigned char *)s;
+	ch = (unsigned char)c;
 	i = 0;
-	ptr = (char *)s;
-	while (*ptr != '\0' && i < num)
+	while (i < num)
 	{
-		if (*ptr == c)
-			return ((char *)ptr);
-		ptr++;
+		if (ptr[i] == ch)
+			return ((void *)&ptr[i]);
 		i++;
 	}
 	return (NULL);
@@ -34,18 +35,18 @@ void	*ft_memchr(const void *s, int c, size_t num)
 #include <string.h>
 
 int main() {
-    const char *str = "bonjourno";
-    char search_char = 'n';
+	const char *str = "bonjourno";
+	char search_char = 'n';
 
-    // Using memchr to find the first occurrence of 'o' in str
-    const char *result = (const char *)ft_memchr(str, search_char, 2);
+	// Using memchr to find the first occurrence of 'o' in str
+	const char *result = (const char *)ft_memchr(str, search_char, 2);
 
-    if (result != NULL) {
-        printf("Found '%c' at position: %ld\n", search_char, result - str);
-    } else {
-        printf("'%c' not found in the string.\n", search_char);
-    }
+	if (result != NULL) {
+		printf("Found '%c' at position: %ld\n", search_char, result - str);
+	} else {
+		printf("'%c' not found in the string.\n", search_char);
+	}
 
-    return 0;
+	return 0;
 }
 */
