@@ -3,57 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brimarti <brimarti@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: Oceano <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 14:42:52 by brimarti          #+#    #+#             */
-/*   Updated: 2024/02/21 14:57:38 by brimarti         ###   ########.fr       */
+/*   Created: 2023/01/19 10:43:42 by Oceano            #+#    #+#             */
+/*   Updated: 2023/01/22 23:45:07 by Oceano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+ * memcmp() is a function in the C standard library 
+ * that compares two memory blocks.
+ * It takes in three arguments: 
+ * 		~pointers to the two memory blocks to be compared, 
+ * 		~and the size of the memory blocks. 
+ * 	The function returns an integer value indicating the relationship 
+ * 	between the two memory blocks: 
+ * 		~0 if they are equal,
+ * 		~a positive value if the first memory block is greater than the second, 
+ * 		~and a negative value if the first memory block is less than the second.
+*/
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
 #include "libft.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned int	i;
-	char			*ptr1;
-	char			*ptr2;
+	size_t	i;
 
 	i = 0;
-	ptr1 = (char *)s1;
-	ptr2 = (char *)s2;
-	while (*ptr1 != '\0' && *ptr2 != '\0' && *ptr1 == *ptr2 && i < n - 1)
+	while (i < n)
 	{
-		ptr1++;
-		ptr2++;
-		i++;
+		if (*((unsigned char *)s1 + i) != *((unsigned char *)s2 + i))
+			return (*((unsigned char *)s1 + i) - *((unsigned char *)s2 + i));
+		++i;
 	}
-	return (*ptr1 - *ptr2);
+	return (0);
 }
 
 /*
-#include <stdio.h>
-#include <string.h>
 
-int main() {
-    const char *str1 = "Hello";
-    const char *str2 = "Hello";
-    const char *str3 = "World";
+int	main(int argc, char **argv)
+{
+	char	*s = argv[1];
+	char	*s1 = argv[2];
+	int		n = atoi(argv[3]);
+	
+	if (!ft_memcmp(s, s1, n))
+		printf("The string are equal up to %d letters\n\n\n", n);
+	else 
+		printf("The strings are different\n\n\n");
 
-    int result1 = ft_memcmp(str1, str2, 5);
-    int result2 = ft_memcmp(str1, str3, 5);
+	if (!memcmp(s, s1, n))
+		printf("The string are equal up to %d letters\n", n);
+	else 
+		printf("The strings are different\n");
 
-    if (result1 == 0) {
-        printf("str1 and str2 are equal.\n");
-    } else {
-        printf("str1 and str2 are not equal.\n");
-    }
-
-    if (result2 == 0) {
-        printf("str1 and str3 are equal.\n");
-    } else {
-        printf("str1 and str3 are not equal.\n");
-    }
-
-    return 0;
+	
 }
 */

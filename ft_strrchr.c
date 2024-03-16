@@ -3,45 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brimarti <brimarti@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: Oceano <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 14:49:15 by brimarti          #+#    #+#             */
-/*   Updated: 2024/02/17 19:16:35 by brimarti         ###   ########.fr       */
+/*   Created: 2023/01/18 17:08:22 by Oceano            #+#    #+#             */
+/*   Updated: 2023/01/31 19:13:00 by Oceano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//#include <stdio.h>
+//#include <string.h>
+
+/*
+ *
+ *  locates the last occurrence of c 🚨(converted to a char)🚨
+ *  in the string pointed to by s.  The terminating null character 
+ *  is considered to be part of the string; 
+ *  therefore if c is `\0', the functions locate the terminating `\0'.
+ *
+ * TLDR
+ * The strrchr() function is identical to strchr(), 
+ * except it locates the last occurrence of c.
+ *
+*/
 
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
+	int		len;
 
-	i = ft_strlen((char *)s);
-	while (i >= 0)
+	len = ft_strlen(s);
+	while (len >= 0)
 	{
-		if (s[i] == c)
-			return ((char *)(s + i));
-		i--;
+		if ((char)c == *(s + len))
+			return ((char *)(s + len));
+		--len;
 	}
 	return (NULL);
 }
 
 /*
-#include <stdio.h>
-#include <string.h>
-
-int main() {
-    const char *str = "Hello, World!";
-    char characterToFind = 'o';
-    printf("%s\n", ft_strrchr(str, characterToFind));
-    char *result = ft_strrchr(str, characterToFind);
-
-    if (result != NULL) {
-        printf("Character '%c' found at position: %ld\n", 
-		characterToFind, result - str);
-    } else {
-        printf("Character '%c' not found in the string.\n", characterToFind);
-    }
-    return 0;
+int	main(void)
+{
+	char	v[] = "Hello world";
+	printf("%p\n", ft_strrchr(v, '\0'));	
+	printf("%p\n", strrchr(v, '\0'));	
 }
 */
