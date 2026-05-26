@@ -1,0 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: brimarti <brimarti@student.42madrid.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/10 14:48:00 by brimarti          #+#    #+#             */
+/*   Updated: 2024/03/17 19:56:46 by brimarti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_strncmp(const char *str, const char *str2, size_t c)
+{
+	size_t			i;
+	int				diff;
+
+	diff = 0;
+	i = 0;
+	while ((str[i] != '\0') && (str2[i] != '\0')
+		&& (diff == 0) && (i < c))
+	{
+		diff = (unsigned char)str[i] - (unsigned char)str2[i];
+		i++;
+	}
+	if ((diff == 0) && (i < c))
+		diff = (unsigned char)str[i] - (unsigned char)str2[i];
+	return (diff);
+}
